@@ -1,0 +1,36 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      actionBarHidden="true"
+      loaded="onQuizListPageLoaded">
+    <GridLayout rows="auto, *"
+                class="quizList-container">
+        <Label text="Choose Your Quiz"
+               class="quizList-headerText imageBackgroundContainer" />
+        <ListView items="{{ quizList }}"
+                  row="1"
+                  itemTap="onSelectQuiz">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *, 100"
+                            class="quizList-itemContainer">
+                    <Image src="{{ image ? image : 'res://unknownquizimage' }}"
+                           class="quizList-image quizImage"
+                           stretch="aspectFill"/>
+                    <Label text="{{ name }}" col="1" class="quizList-text"/>
+                    <Label col="2" class="quizList-text quizList-quizAverage"
+                           textWrap="true"
+                           visibility="{{averageScoreExists? 'visible' : 'collapsed'}}">
+                        <FormattedString>
+                            <Span text="average:&#xa;"/>
+                            <Span text="{{averageScore }}"
+                                  fontWeight="Bold"/>
+                        </FormattedString>
+                    </Label>
+                    <Label col="2"
+                           class="quizList-text quizList-quizAverage"
+                           visibility="{{!averageScoreExists? 'visible' : 'collapsed'}}"
+                           text="NEW!"/>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+        <ActivityIndicator busy="{{ isLoading }}" row="1" />
+    </GridLayout>
+</Page>

@@ -1,0 +1,48 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      actionBarHidden="true"
+      loaded="summaryViewLoaded">
+    <GridLayout rows="auto, auto, auto, auto, *, auto, auto"
+                class="imageBackgroundContainer summary-gridContainer">
+        <Image src="{{image ? image : '~/images/unknownImage.png'}}"
+               class="quizSummaryImage quizImage"
+               stretch="aspectFill"
+               row="0"
+               rowSpan="2"
+               horizontalAlignment="right"/>
+        <Label text="{{name}}"
+               row="0"
+               class="quizName"
+               loaded="quizNameLoaded"
+               horizontalAlignment="left"/>
+        <StackLayout row="2"
+                     horizontalAlignment="center">
+            <Label text="Your Score:"
+                   class="scoreTitleText" />
+            <Label text="{{presentableScore}}"
+                   class="scoreText userScoreText"/>
+        </StackLayout>
+        <ContentView class="shareIconContainer"
+                    row="2"
+                    horizontalAlignment="right"
+                    tap="shareTapped">
+            <Image src='res://share'
+                stretch="AspectFill"
+                horizontalAlignment="center"
+                verticalAlignment="center"/>
+        </ContentView>
+        <StackLayout row="3"
+                     class="communityScoreContainer"
+                     horizontalAlignment="center"
+                     orientation="horizontal"
+                     visibility="{{averageScoreExists? 'visible' : 'collapsed'}}">
+            <Label text="Community Average:"
+                   class="scoreTitleText" />
+            <Label text="{{averageScore}}"
+                   class="scoreText averageScoreText" />
+        </StackLayout>        
+        <Button text="choose another quiz"
+                tap="backToQuizListTapped"
+                class="navigationButton"
+                row="5"/>
+    </GridLayout>
+</Page>
